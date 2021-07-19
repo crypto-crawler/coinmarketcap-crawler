@@ -55,10 +55,11 @@ if __name__ == "__main__":
     if text:
       obj = json.loads(text)
       today_obj['status'] = obj['status']
-      if 'data' not in today_obj:
-        today_obj['data'] = {}
-      for k, v in obj['data'].items():
-        today_obj['data'][k] = v
+      today_obj['data'].update(obj['data'])
     i += NUM_ID_MAX
+
+  # Sort keys based on the ids list
+  sorted_dict = [(str(id), today_obj['data'][str(id)]) for id in ids]
+  today_obj['data'] = dict(sorted_dict)
   with open(today_file, 'wt') as f:
     json.dump(today_obj, f, indent=2)
