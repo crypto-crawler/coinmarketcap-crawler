@@ -7,7 +7,7 @@ on:
     - cron: "0 0 * * *"
 
 jobs:
-  build:
+  cryptocurrency-list:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,7 +25,7 @@ jobs:
 
       - name: Scrape coinmarketcap data
         run: |
-          python coinmarketcap-crawler.py
+          python cryptocurrency-list.py
 
       - name: Commit files
         run: |
