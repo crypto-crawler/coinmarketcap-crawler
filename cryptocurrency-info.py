@@ -1,7 +1,7 @@
 import json
 import logging
 import os
-from datetime import datetime, timedelta
+from datetime import datetime
 from typing import List, Optional
 
 import requests
@@ -33,8 +33,8 @@ def get_infos(ids: List[int]) -> Optional[str]:
   return json.dumps(data, indent=2)
 
 def get_ids() -> List[int]:
-  yesterday = (datetime.utcnow() - timedelta(days=1)).isoformat()[:10]
-  coin_list_file = f'./data/cryptocurrency-list-{yesterday}.json'
+  today = datetime.utcnow().isoformat()[:10]
+  coin_list_file = f'./data/cryptocurrency-list-{today}.json'
   with open(coin_list_file, 'rt') as f:
     data = json.load(f)
     coin_list = data['data']['cryptoCurrencyList']
