@@ -55,6 +55,8 @@ if __name__ == "__main__":
     if text:
       obj = json.loads(text)
       today_obj['status'] = obj['status']
+      if 'data' not in today_obj:
+        today_obj['data'] = {}
       today_obj['data'].update(obj['data'])
     i += NUM_ID_MAX
 
